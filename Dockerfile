@@ -44,6 +44,16 @@ RUN npm install -g grunt-cli phantomjs a11y
 
 #installs closure Library compiler
 RUN wget https://dl.google.com/closure-compiler/compiler-latest.zip
-  RUN unzip compiler-latest.zip -d bin/google_closure/
+RUN unzip compiler-latest.zip -d bin/google_closure/
+
+#Install Google closure template compiler
+RUN wget https://dl.google.com/closure-templates/closure-templates-for-javascript-latest.zip
+RUN unzip closure-templates-for-javascript-latest.zip -d bin/google_closure_templates
+
+#Install AE SDK
+RUN wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.28.zip
+RUN unzip google_appengine_1.9.28.zip -d bin/
+
+
 
 WORKDIR app/

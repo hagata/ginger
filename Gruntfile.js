@@ -7,12 +7,12 @@ module.exports = function(grunt) {
     appengine: {
       app: {
         root: targetDirectory,
-        manageScript: [process.env.HOME,
+        manageScript: [process.env.SHELL,
                        'bin', 'google_appengine', 'appcfg.py'].join('/'),
         runFlags: {
           port: 8080
         },
-        runScript: [process.env.HOME,
+        runScript: [process.env.SHELL,
                     'bin', 'google_appengine', 'dev_appserver.py'].join('/')
       }
     },
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       options: {
         closureLibraryPath: 'closure-library',
         compile: true,
-        compilerFile: [process.env.HOME,
+        compilerFile: [process.env.SHELL,
                       'bin', 'google_closure', 'compiler.jar'].join('/'),
         compilerOpts: {
           compilation_level: grunt.option('dev', false) ?
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
     closureSoys: {
       all: {
         src: ['templates', 'soy', '**', '*.soy'].join('/'),
-        soyToJsJarPath: [process.env.HOME, 'bin', 'google_closure_templates',
+        soyToJsJarPath: [process.env.SHELL, 'bin', 'google_closure_templates',
                          'SoyToJsSrcCompiler.jar'].join('/'),
         outputPathFormat: [targetDirectory, 'static', 'app.soy.js'].join('/'),
         options: {
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
         src: '**'
       },
       soyutils: {
-        cwd: [process.env.HOME, 'bin', 'google_closure_templates'].join('/'),
+        cwd: [process.env.SHELL, 'bin', 'google_closure_templates'].join('/'),
         dest: [targetDirectory, 'static', ''].join('/'),
         expand: true,
         src: 'soyutils.js'
@@ -156,4 +156,3 @@ module.exports = function(grunt) {
       grunt.config.get('build.use_closure') ? 'closureBuilder' : 'nop',
       'yaml']);
 };
-
